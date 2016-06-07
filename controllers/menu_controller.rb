@@ -14,6 +14,7 @@ class MenuController
     p "3 - Search for an entry"
     p "4 - Import entries from a CSV"
     p "5 - Exit"
+    p "6 - View entry number n"
     print "Enter your selection"
 
     selection = gets.to_i
@@ -39,6 +40,10 @@ class MenuController
         system "clear"
         p "Good-bye!"
         exit(0)
+      when 6
+        system "clear"
+        print "select entry number"
+        display_entry_n
       else
         system "clear"
         p "Sorry, that is not a valid input"
@@ -93,4 +98,22 @@ class MenuController
         entry_submenu(entry)
     end
   end
+  def display_entry_n
+    if address_book.entries.empty?
+      p "\nAdd entries to AddressBloc before using this option\n"
+      main_menu
+    end
+    print "What entry number would you like?"
+    entry_n = gets.to_i
+    if entry_n > address_book.entries.length-1
+      system "clear"
+      p "sorry, there is no #{entry_n}, please try again"
+      display_entry_n
+    end
+    system "clear"
+    p "Entry #{entry_n}: #{address_book.entries[entry_n].to_s}\n\n"
+    main_menu
+
+  end
+
 end
