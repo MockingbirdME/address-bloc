@@ -8,12 +8,12 @@ class MenuController
   end
 
   def main_menu
-    p "Main Menu - #{address_book.entries.count} entries"
-    p "1 - View all entries"
-    p "2 - Create an entry"
-    p "3 - Search for an entry"
-    p "4 - Import entries from a CSV"
-    p "5 - Exit"
+    puts "Main Menu - #{address_book.entries.count} entries"
+    puts "1 - View all entries"
+    puts "2 - Create an entry"
+    puts "3 - Search for an entry"
+    puts "4 - Import entries from a CSV"
+    puts "5 - Exit"
     print "Enter your selection"
 
     selection = gets.to_i
@@ -37,11 +37,11 @@ class MenuController
         main_menu
       when 5
         system "clear"
-        p "Good-bye!"
+        puts "Good-bye!"
         exit(0)
       else
         system "clear"
-        p "Sorry, that is not a valid input"
+        puts "Sorry, that is not a valid input"
         main_menu
       end
   end
@@ -49,15 +49,15 @@ class MenuController
   def view_all_entries
     address_book.entries.each do |entry|
       system "clear"
-      p entry.to_s
+      puts entry
       entry_submenu(entry)
     end
     system "clears"
-    p "End of entries"
+    puts "End of entries"
   end
   def create_entry
     system "clear"
-    p "New AddressBloc Entry"
+    puts "New AddressBloc Entry"
     print "Name: "
     name = gets.chomp
     print "Phone number: "
@@ -67,17 +67,17 @@ class MenuController
 
     address_book.add_entry(name, phone_number, email)
     system "clear"
-    p "New entry created for #{name}"
+    puts "New entry created for #{name}"
   end
   def search_entries
   end
   def read_csv
   end
   def entry_submenu(entry)
-    p "n - next entry"
-    p "d - delete entry"
-    p "e - edit entry"
-    p "m - return to main menu"
+    puts "n - next entry"
+    puts "d - delete entry"
+    puts "e - edit entry"
+    puts "m - return to main menu"
     selection = gets.chomp
 
     case selection
@@ -89,7 +89,7 @@ class MenuController
         main_menu
       else
         system "clear"
-        p "#{selection} is not valid input"
+        puts "#{selection} is not valid input"
         entry_submenu(entry)
     end
   end
